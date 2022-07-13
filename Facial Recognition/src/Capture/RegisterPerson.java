@@ -5,6 +5,8 @@
 package Capture;
 
 import Util.ConectaBanco;
+import Util.ControlPerson;
+import Util.ModelPerson;
 
 /**
  *
@@ -13,6 +15,8 @@ import Util.ConectaBanco;
 public class RegisterPerson extends javax.swing.JFrame {
 
     ConectaBanco conecta = new ConectaBanco();
+    ControlPerson cod;
+    ModelPerson mod;
     
     public RegisterPerson() {
         initComponents();
@@ -25,16 +29,16 @@ public class RegisterPerson extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        txt_id_label = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txt_last_name = new javax.swing.JTextField();
+        txt_first_name = new javax.swing.JTextField();
+        txt_office = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txt_dob = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -46,17 +50,18 @@ public class RegisterPerson extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("This person gets a ID x");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
+        txt_id_label.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txt_id_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txt_id_label.setText("1");
+        txt_id_label.setToolTipText("");
+        jPanel2.add(txt_id_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 510, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 510, 70));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 180, -1));
-        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 180, -1));
-        jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 180, -1));
+        jPanel3.add(txt_last_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 180, -1));
+        jPanel3.add(txt_first_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 180, -1));
+        jPanel3.add(txt_office, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 180, -1));
 
         jLabel2.setForeground(new java.awt.Color(100, 100, 100));
         jLabel2.setText("Office (cargo):");
@@ -75,11 +80,11 @@ public class RegisterPerson extends javax.swing.JFrame {
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txt_dob.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanel3.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 180, -1));
+        jPanel3.add(txt_dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 180, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 520, 190));
 
@@ -112,7 +117,13 @@ public class RegisterPerson extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        txt_first_name.setText(mod.getFirst_name());
+        txt_last_name.setText(mod.getLast_name());
+        txt_dob.setText(mod.getDob());
+        txt_office.setText(mod.getOfficer());
+        cod.inserir(mod);
+        
+        //Test
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -152,8 +163,6 @@ public class RegisterPerson extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -161,15 +170,22 @@ public class RegisterPerson extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JFormattedTextField txt_dob;
+    private javax.swing.JTextField txt_first_name;
+    private javax.swing.JLabel txt_id_label;
+    private javax.swing.JTextField txt_last_name;
+    private javax.swing.JTextField txt_office;
     // End of variables declaration//GEN-END:variables
 
     private void showIdUser() {
         conecta.conexao();
         try {
             conecta.executeSQL("SELECT * FROM person ORDER BY id DESC LIMIT 1");
+            conecta.rs.first();
+            txt_id_label.setText(String.valueOf(conecta.rs.getInt("id")));
+            int id = Integer.parseInt(txt_id_label.getText());
+            id++;
+            txt_id_label.setText(String.valueOf(id));
         } catch (Exception e) {
         }
     }

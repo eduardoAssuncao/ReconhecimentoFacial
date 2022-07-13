@@ -4,6 +4,8 @@
  */
 package Principal;
 
+import Capture.RegisterPerson;
+
 /**
  *
  * @author Kenny
@@ -91,7 +93,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        new RegisterPerson().setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
