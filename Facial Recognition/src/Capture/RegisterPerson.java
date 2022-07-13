@@ -4,14 +4,19 @@
  */
 package Capture;
 
+import Util.ConectaBanco;
+
 /**
  *
  * @author Kenny
  */
 public class RegisterPerson extends javax.swing.JFrame {
 
+    ConectaBanco conecta = new ConectaBanco();
+    
     public RegisterPerson() {
         initComponents();
+        showIdUser();
     }
 
     @SuppressWarnings("unchecked")
@@ -160,4 +165,12 @@ public class RegisterPerson extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+
+    private void showIdUser() {
+        conecta.conexao();
+        try {
+            conecta.executeSQL("SELECT * FROM person ORDER BY id DESC LIMIT 1");
+        } catch (Exception e) {
+        }
+    }
 }

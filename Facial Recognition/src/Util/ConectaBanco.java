@@ -10,18 +10,18 @@ public class ConectaBanco {
     public Statement stm;
     public ResultSet rs;
  
-    private String driver;
-    private String root;
-    private String user;
-    private String pass;
+    private final String driver = "org.mysql.Driver";
+    private final String root = "jdbc:mysql://127.0.0.1/facial_recognition";
+    private final String user = "root";
+    private final String pass = "";
     
     public Connection conn;
     
-    public void conecta(){
+    public void conexao(){
         try {
             System.setProperty("jdbc.Driver", driver);
             conn = DriverManager.getConnection(root, user, pass);
-            System.out.println("OK");
+            System.out.println("CONEXÃO REALIZADA COM SUCESSO");
         } catch (Exception e) {
             System.out.print("Error: " + e);
         }
