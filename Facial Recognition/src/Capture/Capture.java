@@ -62,13 +62,13 @@ public class Capture extends javax.swing.JFrame {
 
     public Capture(int id, String fName, String lName, String office, String dob) {
         initComponents();
-        
+
         idPerson = id;
         firstNamePerson = fName;
         lastNamePerson = lName;
         officerPerson = office;
         dobPerson = dob;
-        
+
         startCamera();
     }
 
@@ -214,7 +214,7 @@ public class Capture extends javax.swing.JFrame {
 
                                 if (saveButton.getModel().isPressed()) { //quando apertar o botão saveButton
                                     if (sample <= numSamples) {
-                                        String cropped = "C\\Users\\Kenny\\person." + idPerson + "." + sample + ".jpg";
+                                        String cropped = "C:\\Users\\Kenny\\Pictures\\VRChat\\person." + idPerson + "." + sample + ".jpg";
                                         imwrite(cropped, face);
 
                                         counterLabel.setText(String.valueOf(sample));
@@ -256,9 +256,8 @@ public class Capture extends javax.swing.JFrame {
                                     }*/
                                 }
                             }
-                        
 
-                         imencode(".bmp", cameraImage, mem);
+                            imencode(".bmp", cameraImage, mem);
                             Image im = ImageIO.read(new ByteArrayInputStream(mem.getStringBytes()));
                             BufferedImage buff = (BufferedImage) im;
                             try {
@@ -299,12 +298,12 @@ public class Capture extends javax.swing.JFrame {
             Mat photo = imread(image.getAbsolutePath(), CV_GRAY2BGR/*CV_LOAD_IMAGE_GRAYSCALE*/);
             int idP = Integer.parseInt(image.getName().split("\\.")[1]);
             opencv_imgproc.resize(photo, photo, new Size(160, 160));
-        
+
             photos.put(counter, photo);
             labelsBuffer.put(counter, idP);
             counter++;
         }
-        
+
         FaceRecognizer lbph = LBPHFaceRecognizer.create();
         lbph.train(photos, labels);
         lbph.save("C:\\Users\\Kenny\\Pictures\\VRChat\\classifierLBPH.yml");
