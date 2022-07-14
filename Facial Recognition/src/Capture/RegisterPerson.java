@@ -15,8 +15,7 @@ import Util.ModelPerson;
 public class RegisterPerson extends javax.swing.JFrame {
 
     ConectaBanco conecta = new ConectaBanco();
-    ControlPerson cod;
-    ModelPerson mod;
+   
     
     public RegisterPerson() {
         initComponents();
@@ -117,13 +116,7 @@ public class RegisterPerson extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cod = new ControlPerson();
-        mod = new ModelPerson();
-        mod.setFirst_name(txt_first_name.getText());
-        mod.setLast_name(txt_last_name.getText());
-        mod.setDob(txt_dob.getText());
-        mod.setOfficer(txt_office.getText());
-        cod.inserir(mod);
+        
         
         //Test
     }//GEN-LAST:event_jButton1ActionPerformed
