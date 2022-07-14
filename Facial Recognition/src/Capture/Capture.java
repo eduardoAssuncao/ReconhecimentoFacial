@@ -120,6 +120,11 @@ public class Capture extends javax.swing.JFrame {
         saveButton.setContentAreaFilled(false);
         saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveButton.setOpaque(true);
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
         jPanel2.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 70, 130, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 330, 100));
@@ -129,6 +134,10 @@ public class Capture extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(368, 650));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,10 +214,10 @@ public class Capture extends javax.swing.JFrame {
 
                                 if (saveButton.getModel().isPressed()) { //quando apertar o botão saveButton
                                     if (sample <= numSamples) {
-                                        String cropped = "C:\\photos\\person." + "." + sample + ".jpg";
+                                        String cropped = "C\\Users\\Kenny\\person." + idPerson + "." + sample + ".jpg";
                                         imwrite(cropped, face);
 
-                                        counterLabel.setText(String.valueOf(sample) + "/25");
+                                        counterLabel.setText(String.valueOf(sample));
                                         sample++;
                                     }
 
@@ -276,7 +285,7 @@ public class Capture extends javax.swing.JFrame {
         FilenameFilter filter = new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
-                return name.endsWith(".jng") || name.endsWith(".png");
+                return name.endsWith(".jpg") || name.endsWith(".png");
             }
         };
 
@@ -288,11 +297,11 @@ public class Capture extends javax.swing.JFrame {
         int counter = 0;
         for (File image : files) {
             Mat photo = imread(image.getAbsolutePath(), CV_GRAY2BGR/*CV_LOAD_IMAGE_GRAYSCALE*/);
-            int idPerson = Integer.parseInt(image.getName().split("\\.")[1]);
+            int idP = Integer.parseInt(image.getName().split("\\.")[1]);
             opencv_imgproc.resize(photo, photo, new Size(160, 160));
         
             photos.put(counter, photo);
-            labelsBuffer.put(counter, idPerson);
+            labelsBuffer.put(counter, idP);
             counter++;
         }
         
