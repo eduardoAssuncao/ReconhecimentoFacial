@@ -17,6 +17,7 @@ import org.bytedeco.javacpp.BytePointer;
 import org.bytedeco.opencv.global.opencv_imgproc;
 //import static org.bytedeco.javacpp.opencv_imgcodecs.CV_LOAD_IMAGE_GRAYSCALE;
 import static org.bytedeco.opencv.global.opencv_imgproc.COLOR_BGRA2GRAY;
+import static org.bytedeco.opencv.global.opencv_imgproc.CV_GRAY2BGR;
 import static org.bytedeco.opencv.global.opencv_imgproc.rectangle;
 import org.bytedeco.opencv.opencv_core.Mat;
 import org.bytedeco.opencv.*;
@@ -48,7 +49,7 @@ public class Capture extends javax.swing.JFrame {
     //JavaCV
     VideoCapture webSource = null;
     Mat cameraImage = new Mat();
-    CascadeClassifier cascade = new CascadeClassifier();
+    CascadeClassifier cascade = new CascadeClassifier("C:\\Users\\Kenny\\Pictures\\VRChat\\haarcascade_frontalface_alt.xml");
     BytePointer mem = new BytePointer();
     RectVector detectedFaces = new RectVector();
 
@@ -207,7 +208,7 @@ public class Capture extends javax.swing.JFrame {
                                         String cropped = "C:\\photos\\person." + "." + sample + ".jpg";
                                         imwrite(cropped, face);
 
-                                        counterLabel.setText(String.valueOf(sample));
+                                        counterLabel.setText(String.valueOf(sample) + "/25");
                                         sample++;
                                     }
 
@@ -246,31 +247,28 @@ public class Capture extends javax.swing.JFrame {
                                     }*/
                                 }
                             }
-                        }
+                        
 
-                        imencode(".bmp", cameraImage, mem);
-                        Image im = ImageIO.read(new ByteArrayInputStream(mem.getStringBytes()));
-                        BufferedImage buff = (BufferedImage) im;
-
-                        if (g.drawImage(buff, 0, 0, getWidth(), getHeight() - 90, 0, 0, buff.getWidth(), buff.getHeight(), null)) {
-                            if (runnable == false) {
-                                System.out.println("Salve a Foto");
-                                this.wait();
+                         imencode(".bmp", cameraImage, mem);
+                            Image im = ImageIO.read(new ByteArrayInputStream(mem.getStringBytes()));
+                            BufferedImage buff = (BufferedImage) im;
+                            try {
+                                if (g.drawImage(buff, 0, 0, 360, 390, 0, 0, buff.getWidth(), buff.getHeight(), null)) {
+                                    if (runnable == false) {
+                                        System.out.println("Salve a Foto");
+                                        this.wait();
+                                    }
+                                }
+                            } catch (Exception e) {
                             }
                         }
 
-                    } catch (IOException ex) {
+                    } catch (Exception ex) {
                         ex.printStackTrace();
-                        JOptionPane.showMessageDialog(null, "Erro ao iniciar camera (IOEx)\n" + ex);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                        JOptionPane.showMessageDialog(null, "Erro ao iniciar camera (Interrupted)\n" + ex);
                     }
                 }
             }
-
         }
-
     }
 
     public void generate() {
@@ -289,7 +287,7 @@ public class Capture extends javax.swing.JFrame {
 
         int counter = 0;
         for (File image : files) {
-            Mat photo = imread(image.getAbsolutePath(), CV_LOAD_IMAGE_GRAYSCALE);
+            Mat photo = imread(image.getAbsolutePath(), CV_GRAY2BGR/*CV_LOAD_IMAGE_GRAYSCALE*/);
             int idPerson = Integer.parseInt(image.getName().split("\\.")[1]);
             opencv_imgproc.resize(photo, photo, new Size(160, 160));
         

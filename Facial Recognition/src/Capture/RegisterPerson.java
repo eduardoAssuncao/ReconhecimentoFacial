@@ -116,7 +116,13 @@ public class RegisterPerson extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String fName = txt_first_name.getText();
+        String lName = txt_last_name.getText();
+        String dob = txt_dob.getText();
+        String office = txt_office.getText();
+        int id = Integer.parseInt(txt_id_label.getText().replace("ID: ", ""));
         
+        new Capture(id, fName, lName, office, dob).setVisible(true);
         
         //Test
     }//GEN-LAST:event_jButton1ActionPerformed
