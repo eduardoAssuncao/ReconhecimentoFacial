@@ -280,7 +280,7 @@ public class Capture extends javax.swing.JFrame {
     }
 
     public void generate() {
-        File directory = new File("C:\\Users\\Kenny\\Pictures\\VRChat");
+        File directory = new File("C:\\Users\\Kenny\\Pictures\\VRChat\\");
         FilenameFilter filter = new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
@@ -288,7 +288,7 @@ public class Capture extends javax.swing.JFrame {
             }
         };
 
-        File[] files = directory.listFiles(); //only oour filter
+        File[] files = directory.listFiles(filter); //only oour filter
         MatVector photos = new MatVector(files.length);
         Mat labels = new Mat(files.length, 1, CV_32SC1);
         IntBuffer labelsBuffer = labels.createBuffer();
