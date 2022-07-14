@@ -117,10 +117,12 @@ public class RegisterPerson extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        txt_first_name.setText(mod.getFirst_name());
-        txt_last_name.setText(mod.getLast_name());
-        txt_dob.setText(mod.getDob());
-        txt_office.setText(mod.getOfficer());
+        cod = new ControlPerson();
+        mod = new ModelPerson();
+        mod.setFirst_name(txt_first_name.getText());
+        mod.setLast_name(txt_last_name.getText());
+        mod.setDob(txt_dob.getText());
+        mod.setOfficer(txt_office.getText());
         cod.inserir(mod);
         
         //Test
