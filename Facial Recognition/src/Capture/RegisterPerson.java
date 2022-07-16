@@ -15,8 +15,7 @@ import Util.ModelPerson;
 public class RegisterPerson extends javax.swing.JFrame {
 
     ConectaBanco conecta = new ConectaBanco();
-   
-    
+
     public RegisterPerson() {
         initComponents();
         showIdUser();
@@ -121,9 +120,9 @@ public class RegisterPerson extends javax.swing.JFrame {
         String dob = txt_dob.getText();
         String office = txt_office.getText();
         int id = Integer.parseInt(txt_id_label.getText().replace("ID: ", ""));
-        
+
         new Capture(id, fName, lName, office, dob).setVisible(true);
-        
+
         //Test
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -180,13 +179,13 @@ public class RegisterPerson extends javax.swing.JFrame {
 
     private void showIdUser() {
         conecta.conexao();
+        conecta.executeSQL("SELECT * FROM person ORDER BY id DESC LIMIT 1");
         try {
-            conecta.executeSQL("SELECT * FROM person ORDER BY id DESC LIMIT 1");
             conecta.rs.first();
             txt_id_label.setText(String.valueOf(conecta.rs.getInt("id")));
             int id = Integer.parseInt(txt_id_label.getText());
             id++;
-            txt_id_label.setText(String.valueOf(id));
+            txt_id_label.setText(String.valueOf(id));//not exists
         } catch (Exception e) {
         }
     }
