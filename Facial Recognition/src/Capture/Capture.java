@@ -312,7 +312,8 @@ public class Capture extends javax.swing.JFrame {
     public void insertDatabase() {
         ControlPerson cod = new ControlPerson();
         ModelPerson mod = new ModelPerson();
-
+        
+        mod.setId(idPerson);
         mod.setFirst_name(firstNamePerson);
         mod.setLast_name(lastNamePerson);
         mod.setDob(dobPerson);

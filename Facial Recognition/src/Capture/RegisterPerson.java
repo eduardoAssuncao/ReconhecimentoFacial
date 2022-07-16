@@ -120,7 +120,8 @@ public class RegisterPerson extends javax.swing.JFrame {
         String dob = txt_dob.getText();
         String office = txt_office.getText();
         int id = Integer.parseInt(txt_id_label.getText().replace("ID: ", ""));
-
+        System.out.println(id);
+        
         new Capture(id, fName, lName, office, dob).setVisible(true);
 
         //Test
