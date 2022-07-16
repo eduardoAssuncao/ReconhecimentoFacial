@@ -186,7 +186,7 @@ public class RegisterPerson extends javax.swing.JFrame {
             txt_id_label.setText(String.valueOf(conecta.rs.getInt("id")));
             int id = Integer.parseInt(txt_id_label.getText());
             id++;
-            txt_id_label.setText(String.valueOf(id));//not exists
+            txt_id_label.setText("ID: " + String.valueOf(id));//not exists
         } catch (Exception e) {
         }
     }
