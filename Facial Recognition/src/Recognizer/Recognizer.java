@@ -55,6 +55,11 @@ public class Recognizer extends javax.swing.JFrame {
 
     public Recognizer() {
         initComponents();
+        
+        recognizer.read("C:\\Users\\Kenny\\Pictures\\VRChat\\classifierLBPH.yml");
+        recognizer.setThreshold(80);
+        
+        startCamera();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -232,7 +237,7 @@ public class Recognizer extends javax.swing.JFrame {
                         
                         System.out.println("Person: " + conecta.rs.getString("id"));
                         
-                        java.sql.Array ident = conecta.rs.getArray(2);
+                        java.sql.Array ident = conecta.rs.getArray("first_name");
                         String[] person = (String[]) ident.getArray();
                         
                         for(int i = 0; i < person.length; i++){
@@ -248,4 +253,18 @@ public class Recognizer extends javax.swing.JFrame {
         worker.execute();
     }
     
+    public void stopCamera() {
+        myThread.runnable = false;
+        webSource.release();
+        dispose();
+    }
+
+    public void startCamera() {
+        webSource = new VideoCapture(0);
+        myThread = new Recognizer.DaemonThread();
+        Thread t = new Thread(myThread);
+        t.setDaemon(true);
+        myThread.runnable = true;
+        t.start();
+    }
 }
