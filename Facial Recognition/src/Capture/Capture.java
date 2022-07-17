@@ -247,33 +247,6 @@ public class Capture extends javax.swing.JFrame {
                                         System.out.println("File Generated");
                                         stopCamera();
                                     }
-                                    /*if (txt_first_name.getText().equals("") || txt_first_name.getText().equals(" ")) {
-                                        JOptionPane.showMessageDialog(null, "Campo vazio");
-                                    } else if (txt_first_name.getText().equals("") || txt_first_name.getText().equals(" ")) {
-                                        JOptionPane.showMessageDialog(null, "Campo vazio");
-                                    } else if (txt_last_name.getText().equals("") || txt_last_name.getText().equals(" ")) {
-                                        JOptionPane.showMessageDialog(null, "Campo vazio");
-                                    } else if (txt_office.getText().equals("") || txt_office.getText().equals(" ")) {
-                                        JOptionPane.showMessageDialog(null, "Campo vazio");
-                                    } else {
-                                        if (sample <= numSamples) {
-//                                        salva a imagem cortada [160,160]
-//                                        nome do arquivo: idpessoa + a contagem de fotos. ex: person.10(id).6(sexta foto).jpg
-                                            String cropped = "C:\\photos\\person." + txt_id_label.getText() + "." + sample + ".jpg";
-                                            imwrite(cropped, face);
-
-                                            //System.out.println("Foto " + amostra + " capturada\n");
-                                            counterLabel.setText(String.valueOf(sample) + "/25");
-                                            sample++;
-                                        }
-                                        if (sample > 25) {
-                                            new TrainLBPH().trainPhotos();//se a contagem for maior que 25, termina de tirar a foto, gera o arquivo
-                                            insertDatabase(); //insere os dados no banco
-
-                                            System.out.println("File Generated");
-                                            stopCamera(); // e fecha a camera
-                                        }
-                                    }*/
                                 }
                             }
 

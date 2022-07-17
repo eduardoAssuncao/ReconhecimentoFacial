@@ -56,7 +56,12 @@ public class Recognizer extends javax.swing.JFrame {
     public Recognizer() {
         initComponents();
         
-        recognizer.read("C:\\Users\\Kenny\\Pictures\\VRChat\\classifierLBPH.yml");
+        recognizer.read("C:\\Users\\Kenny\\Pictures\\VRChat\\classifierLBPH.yml"); //classifierLBPH é um algoritmo de reconhecimento facial usado para reconhecer o rosto de uma pessoa. (realiza o mapeamento da matriz da imagem por meio da frequência - luz)
+                                                                                   //O próximo passo é criar um histograma, que é um conceito de estatística que contará quantas vezes cada cor aparece em cada quadrado. Esta é a representação do histograma.
+                                                                                   //Por exemplo, se o valor 110 aparecer 50 vezes uma barra como essa será criada com esse tamanho igual a 50, se 201 aparecer 110 vezes e a outra barra será criada nesse histograma
+                                                                                   //com esse tamanho igual a 100. Com base na comparação dos histogramas, o algoritmo será capaz de identificar as bordas e também os cantos das imagens. Por exemplo, neste primeiro
+                                                                                   //quadrado aqui, não temos informações sobre o rosto da pessoa. Então o histograma será diferente desse outro quadrado que tem a borda da face. Em suma, o algoritmo sabe quais histogramas
+                                                                                   //representam bordas e quais histogramas representam as principais características da pessoa, como a cor dos olhos, o formato da boca e assim por diante.
         recognizer.setThreshold(80);
         
         startCamera();
